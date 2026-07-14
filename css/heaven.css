@@ -1,0 +1,271 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:"Anybody",sans-serif;
+    color:white;
+    overflow-x:hidden;
+    background:#000;
+}
+
+/* ---------- Background ---------- */
+.background{
+    position:fixed;
+    inset:0;
+    background:url("../assets/heavenbg.jpeg");
+    background-size:cover;
+    background-position:center;
+    z-index:-3;
+}
+
+.overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        rgba(235,245,255,.18),
+        rgba(120,165,220,.22)
+    );
+    backdrop-filter:blur(2px);
+}
+
+/* ---------- Header ---------- */
+header{
+    text-align:center;
+    padding:60px 20px 40px;
+}
+
+header h1{
+    font-family:"Cinzel",serif;
+    font-size:60px;
+    color:#ffffff;
+    text-shadow:0 0 20px rgba(255,255,255,.4);
+}
+
+header p{
+    margin-top:10px;
+    color:#eef7ff;
+    font-size:18px;
+}
+
+.return-btn{
+    display:inline-block;
+    margin-top:25px;
+    padding:12px 26px;
+    text-decoration:none;
+    color:white;
+    border-radius:40px;
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.25);
+    backdrop-filter:blur(12px);
+    transition:.3s;
+}
+
+.return-btn:hover{
+    transform:translateY(-3px);
+    background:rgba(255,255,255,.22);
+}
+
+/* ---------- Hero ---------- */
+.hero{
+    width:90%;
+    max-width:900px;
+    margin:auto;
+}
+
+.hero h2{
+    text-align:center;
+    margin-bottom:25px;
+    font-family:"Cinzel",serif;
+}
+
+.weather-card{
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(20px);
+    border-radius:30px;
+    border:1px solid rgba(255,255,255,.28);
+    padding:50px;
+    text-align:center;
+    box-shadow:
+    0 20px 60px rgba(0,0,0,.18);
+}
+
+.icon{
+    font-size:75px;
+    margin-bottom:20px;
+}
+
+.weather-card h1{
+    font-size:70px;
+    margin-bottom:20px;
+}
+
+.weather-card h3{
+    font-size:28px;
+    margin-bottom:15px;
+}
+
+.funny{
+    line-height:1.8;
+    font-size:18px;
+}
+
+/* --------- Details ---------- */
+.details{
+    width:90%;
+    max-width:1200px;
+    margin:60px auto;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:22px;
+}
+
+.card{
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(18px);
+    border-radius:20px;
+    padding:28px;
+    text-align:center;
+    border:1px solid rgba(255,255,255,.18);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    background:rgba(255,255,255,.18);
+}
+
+/* ---------- Forecast ---------- */
+.forecast{
+    width:90%;
+    max-width:1200px;
+    margin:auto;
+}
+
+.forecast h2{
+    text-align:center;
+    margin-bottom:35px;
+    font-family:"Cinzel",serif;
+}
+
+.forecast-grid{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:18px;
+}
+
+.forecast-card{
+    background:rgba(255,255,255,.10);
+    border-radius:18px;
+    padding:25px;
+    text-align:center;
+    line-height:1.8;
+    backdrop-filter:blur(14px);
+}
+
+/* ---------- Whisper ---------- */
+.notice{
+    width:90%;
+    max-width:750px;
+    margin:70px auto;
+    background:rgba(255,255,255,.12);
+    border-radius:25px;
+    padding:35px;
+    text-align:center;
+    backdrop-filter:blur(18px);
+}
+
+.notice h2{
+    margin-bottom:20px;
+    font-family:"Cinzel",serif;
+}
+
+.notice p{
+    line-height:1.8;
+    margin-bottom:25px;
+}
+
+#newWhisper{
+    padding:12px 24px;
+    border:none;
+    border-radius:40px;
+    cursor:pointer;
+    background:white;
+    color:#6a8ec8;
+    font-weight:bold;
+    transition:.3s;
+}
+
+#newWhisper:hover{
+    transform:scale(1.05);
+}
+
+/* ---------- Footer ---------- */
+footer{
+    padding:60px 20px;
+    text-align:center;
+    color:#eef7ff;
+    line-height:2;
+}
+
+/* ---------- Mobile ---------- */
+
+@media(max-width:992px){
+.details{
+grid-template-columns:repeat(2,1fr);
+}
+
+.forecast-grid{
+grid-template-columns:repeat(2,1fr);
+} }
+
+@media(max-width:600px){
+header h1{
+font-size:42px;
+}
+
+.weather-card{
+padding:35px 20px;
+}
+
+.weather-card h1{
+font-size:50px;
+}
+
+.weather-card h3{
+font-size:22px;
+}
+
+.details{
+grid-template-columns:1fr;
+}
+
+.forecast-grid{
+grid-template-columns:1fr;
+}
+
+.notice{
+padding:25px 18px;
+} }
+
+.hell-link{
+    text-align:center;
+    margin:70px 0 20px;
+    color:rgba(255,255,255,1);
+    font-size:16px;
+}
+
+.hell-link a{
+    color:#FFD369;
+    text-decoration:none;
+    font-weight:600;
+    transition:.3s;
+}
+
+.hell-link a:hover{
+    color:white;
+    text-shadow:
+    0 0 12px rgba(255,211,107,.7);
+}

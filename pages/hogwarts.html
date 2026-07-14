@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CIELA | Hogwarts Weather Bureau</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:wght@100..900&family=Bricolage+Grotesque:wght@200..800&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/hogwarts.css">
+
+</head>
+
+<body>
+
+<div class="background">
+    <div class="overlay"></div>
+</div>
+
+<header>
+
+    <h1>Hogwarts</h1>
+    <p>Magical Weather Bureau</p>
+    <a href="../index.html" class="return-btn">← Return to Earth</a>
+
+    <div class="castle-status">
+      <span id="castleEmoji">🕰</span>
+      <span id="castleTime">Preparing the Castle...</span>
+    </div>
+
+</header>
+
+<section class="hero">
+    <h2>Current Magical Conditions</h2>
+    <div class="weather-card">
+        <div class="weather-icon">
+            🪄
+        </div>
+
+        <h1>17°C</h1>
+        <h3>Floating Candles</h3>
+        <p>
+            Visibility is crystal clear.
+            Expect owl traffic after sunset.
+        </p>
+    </div>
+</section>
+
+
+<section class="details">
+    <div class="card">
+        <h3>🧹 Quidditch</h3>
+        <p>Nimbus Friendly</p>
+    </div>
+
+    <div class="card">
+        <h3>🦉 Owl Flights</h3>
+        <p>Excellent</p>
+    </div>
+
+    <div class="card">
+        <h3>🧪 Potion Brewing</h3>
+        <p>Perfect Humidity</p>
+    </div>
+
+    <div class="card">
+        <h3>🌲 Forbidden Forest</h3>
+        <p>Enter Carefully</p>
+    </div>
+
+</section>
+
+
+<section class="houses">
+
+  <h2>House Forecast</h2>
+   <div class="house-grid">
+   <div class="house gryffindor">
+
+  <h3>🦁 Gryffindor</h3>
+
+  <p>Luck ★★★★★
+  <br>Perfect weather for heroic decisions.</p>
+
+</div>
+
+<div class="house slytherin">
+ <h3>🐍 Slytherin</h3>
+ <p>Dungeon humidity is comfortable.</p>
+
+</div>
+
+<div class="house ravenclaw">
+<h3>🦅 Ravenclaw</h3>
+
+ <p>Excellent stargazing tonight.</p>
+
+</div>
+
+<div class="house hufflepuff">
+<h3>🦡 Hufflepuff</h3>
+
+ <p>Greenhouses are flourishing.</p>
+
+</div>
+</div>
+</section>
+
+<section class="alerts">
+  <h2>Daily Prophet Alerts</h2>
+   <ul>
+      <li>⚠ Moving staircases are unusually active.</li>
+      <li>⚠ Owl deliveries delayed by strong crosswinds.</li>
+      <li>⚠ Peeves has been spotted near the library.</li>
+      <li>⚠ Astronomy Tower offers spectacular night skies.</li>
+   </ul>
+</section>
+
+<footer>
+
+<p>
+
+Every sky tells a different story.
+
+<br><br>
+
+Weather data crafted by imagination.
+
+</p>
+
+</footer>
+
+<div id="owlPost" class="owl-post hidden">
+
+    <button id="closeOwlPost">&times;</button>
+
+    <h3>🦉 Owl Post</h3>
+
+    <p id="owlText"></p>
+
+    <button id="nextLetter">
+        ✨ Send another Owl
+    </button>
+
+</div>
+
+
+<script src="../js/hogwarts.js"></script>
+
+</body>
+</html>

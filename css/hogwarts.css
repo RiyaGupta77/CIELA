@@ -1,0 +1,347 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:"Anybody",sans-serif;
+    color:white;
+    overflow-x:hidden;
+    background:#000;
+}
+
+/* ---------- Background ---------- */
+.background{
+    position:fixed;
+    inset:0;
+    background:url("../assets/hogwartsbg.JPG");
+    background-size:cover;
+    background-position:center;
+    z-index:-3;
+}
+
+/* Dark Overlay */
+.overlay{
+    position:absolute;
+    inset:0;
+    background:rgba(10,7,18,.62);
+}
+
+/* Parchment Layer */
+.background::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:url("../assets/parchment.png");
+    background-size:cover;
+    background-position:center;
+    opacity:.10;
+    mix-blend-mode:screen;
+    pointer-events:none;
+}
+
+/* ---------- Header ---------- */
+header{
+    text-align:center;
+    padding:60px 20px 40px;
+}
+
+header h1{
+    font-family:"Cinzel",serif;
+    font-size:64px;
+    letter-spacing:3px;
+    color:#E9D18D;
+}
+
+header p{
+    margin-top:10px;
+    color:#d7c28d;
+    font-size:18px;
+}
+
+.return-btn{
+    display:inline-block;
+    margin-top:25px;
+    text-decoration:none;
+    color:white;
+    border:1px solid rgba(255,255,255,.15);
+    padding:12px 24px;
+    border-radius:50px;
+    backdrop-filter:blur(12px);
+    transition:.3s;
+}
+
+.return-btn:hover{
+    background:rgba(255,255,255,.08);
+}
+
+.castle-status{
+    margin-top:22px;
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+    padding:12px 22px;
+    border-radius:40px;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(233,209,141,.18);
+    backdrop-filter:blur(12px);
+    font-size:17px;
+    color:#F3E8C8;
+}
+
+#castleEmoji{
+    font-size:22px;
+}
+
+/* ---------- Hero ---------- */
+.hero{
+    width:90%;
+    max-width:900px;
+    margin:auto;
+}
+
+.hero h2{
+    margin-bottom:25px;
+    text-align:center;
+    color:#E9D18D;
+    font-family:"Cinzel",serif;
+}
+
+.weather-card{
+    background:rgba(40,25,10,.35);
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(233,209,141,.25);
+    border-radius:30px;
+    padding:45px;
+    text-align:center;
+    box-shadow:
+    0 20px 60px rgba(0,0,0,.45);
+}
+
+.weather-icon{
+    font-size:70px;
+    margin-bottom:20px;
+}
+
+.weather-card h1{
+    font-size:90px;
+    color:#FFD369;
+}
+
+.weather-card h3{
+    margin:15px 0;
+    font-size:30px;
+}
+
+.weather-card p{
+    color:#ddd;
+    line-height:1.7;
+}
+
+/* ---------- Details ---------- */
+.details{
+    width:90%;
+    max-width:1200px;
+    margin:50px auto;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.card{
+    background:rgba(255,255,255,.05);
+    backdrop-filter:blur(12px);
+    border-radius:20px;
+    padding:25px;
+    text-align:center;
+    transition:.35s;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    border:1px solid #E9D18D;
+}
+
+/* ---------- Houses ---------- */
+.houses{
+    width:90%;
+    max-width:1200px;
+    margin:70px auto;
+}
+
+.houses h2{
+    text-align:center;
+    margin-bottom:35px;
+    font-family:"Cinzel",serif;
+    color:#E9D18D;
+}
+
+.house-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.house{
+    padding:30px;
+    border-radius:20px;
+    backdrop-filter:blur(12px);
+    text-align:center;
+    transition:.3s;
+}
+
+.house:hover{
+    transform:scale(1.04);
+}
+
+.gryffindor{
+    background:#74000188;
+}
+
+.slytherin{
+    background:#1A472A88;
+}
+
+.ravenclaw{
+    background:#0E1A4088;
+}
+
+.hufflepuff{
+    background:#ECB93955;
+}
+
+/* ---------- Alerts ---------- */
+.alerts{
+    width:90%;
+    max-width:900px;
+    margin:70px auto;
+}
+
+.alerts h2{
+    text-align:center;
+    margin-bottom:30px;
+    color:#E9D18D;
+    font-family:"Cinzel",serif;
+}
+
+.alerts ul{
+    list-style:none;
+}
+
+.alerts li{
+    margin-bottom:18px;
+    background:rgba(255,255,255,.05);
+    padding:18px;
+    border-radius:15px;
+}
+
+.owl-post{
+    position:fixed;
+    right:30px;
+    bottom:30px;
+    width:320px;
+    padding:24px;
+    border-radius:22px;
+    background:rgba(58,40,18,.90);
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(233,209,141,.30);
+    box-shadow:
+    0 20px 50px rgba(0,0,0,.45);
+    z-index:9999;
+    transition:
+    opacity .45s ease,
+    transform .45s ease;
+}
+
+.owl-post h3{
+    font-family:"Cinzel",serif;
+    color:#FFD369;
+    margin-bottom:18px;
+}
+
+.owl-post p{
+    line-height:1.7;
+    margin-bottom:18px;
+    color:#F3E8C8;
+}
+
+#nextLetter{
+    border:none;
+    padding:10px 18px;
+    border-radius:30px;
+    cursor:pointer;
+    background:rgba(255,255,255,.08);
+    color:white;
+    transition:.3s;
+}
+
+#nextLetter:hover{
+    background:rgba(255,255,255,.18);
+}
+
+#closeOwlPost{
+    position:absolute;
+    top:14px;
+    right:16px;
+    border:none;
+    background:none;
+    color:white;
+    font-size:20px;
+    cursor:pointer;
+    opacity:.6;
+}
+
+#closeOwlPost:hover{
+    opacity:1;
+}
+
+.hidden{
+    opacity:0;
+    transform:translateY(30px);
+    pointer-events:none;
+}
+
+.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+@media(max-width:768px){
+.owl-post{
+left:20px;
+right:20px;
+width:auto;
+bottom:20px;
+} }
+
+/* ---------- Footer ---------- */
+footer{
+    padding:60px;
+    text-align:center;
+    color:#ddd;
+}
+
+/* ---------- Mobile ---------- */
+
+@media(max-width:900px){
+.details{
+grid-template-columns:1fr 1fr;
+}
+
+.house-grid{
+grid-template-columns:1fr;
+} }
+
+@media(max-width:650px){
+.details{
+grid-template-columns:1fr;
+}
+
+header h1{
+font-size:42px;
+}
+
+.weather-card h1{
+font-size:65px;
+} }

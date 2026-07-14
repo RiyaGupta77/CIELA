@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CIELA - Read the Sky</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wght@0,100..900;1,100..900&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Special+Gothic+Expanded+One&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+    <div class="background">
+
+    <video
+        autoplay
+        muted
+        loop
+        playsinline
+        id="bgVideo">
+
+        <source src="assets/space.mp4" type="video/mp4">
+
+    </video>
+
+    <div class="overlay"></div>
+
+</div>
+
+<div class="page" id="top">
+
+    <div class="container">
+
+        <!-- Header -->
+        <header>
+
+            <div class="logo">
+                <h1>CIELA</h1>
+                <p>Read the Sky</p>
+            </div>
+
+            <nav>
+                <div class="dropdown">
+                   <a href="#">Universes ▾</a>
+                <div class="dropdown-content">
+                    <a href="#top">🌍 Earth</a>
+                    <a href="pages/hogwarts.html">🏰 Hogwarts</a>
+                    <a href="pages/heaven.html">☁ Heaven</a>
+                    <a href="pages/hell.html">🔥 Hell</a>
+                    <a href="pages/space.html">🌌 Space</a>
+                    <a href="pages/area51.html">👽 Area 51</a>
+               </div>
+                </div>
+                
+                <a href="#journal">Journal</a>
+                <a href="#about">About</a>
+            </nav>
+
+        </header>
+
+        <!-- Search -->
+        <section class="search-section">
+
+            <input
+                type="text"
+                placeholder="Search any city..."
+                id="cityInput">
+
+            <button id="searchBtn">
+                Search
+            </button>
+
+    
+        </section>
+
+        <!-- Weather Card -->
+        <section class="weather-card" id="heroCard">
+
+            <h2 id="cityName">Reading the Sky...</h2>
+        <img
+         id="weatherIcon"
+         class="weather-icon">
+         
+         <h1 id="temperature">--°C</h1>
+
+         <p id="condition">Finding your weather...</p>
+         <p id="skySummary"></p>
+                
+        </section>
+
+
+        <!-- Details -->
+        <section class="details">
+
+            <div class="detail-box">
+                <h3>Humidity</h3>
+                <p id="humidityLabel">--%</p>
+            </div>
+
+            <div class="detail-box">
+                <h3>Wind</h3>
+                <p id="windLabel">-- km/h</p>
+            </div>
+
+            <div class="detail-box">
+                <h3>Visibility</h3>
+                <p id="visibilityLabel">-- km</p>
+            </div>
+
+            <div class="detail-box">
+                <h3>Feels Like</h3>
+                <p id="feelsLikeLabel">--°C</p>
+            </div>
+
+        </section>
+
+    </div>
+
+<!-- Hourly Forecast -->
+
+<section class="weather-insights">
+
+    <section class="hourly">
+        <h2>Hourly Forecast</h2>
+        <div class="hourly-cards" id="hourlyCards">
+        </div>
+    </section>
+
+    <section class="sun-cycle">
+        <h2>☀ Sun Cycle</h2>
+        <div class="sun-content">
+            <div class="sun-time">
+                <span>🌅 Sunrise</span>
+                <h3 id="sunriseTime">--:--</h3>
+            </div>
+
+            <div class="sun-progress">
+                <div class="sun-line">
+                    <div class="sun-dot" id="sunDot"></div>
+                </div>
+            </div>
+
+            <div class="sun-time">
+                <span>🌇 Sunset</span>
+                <h3 id="sunsetTime">--:--</h3>
+            </div>
+        </div>
+    </section>
+</section>
+
+
+<!-- Weather Journal & About -->
+
+<div class="bottom-grid">
+
+    <section class="journal" id="journal">
+        <h2>Weather Journal</h2>
+        <textarea id="journalInput" placeholder="How does today's weather make you feel?"></textarea>
+        <button id="saveEntryBtn">Save Entry</button>
+
+        <div class="journal-history">
+            <div class="history-header" id="historyToggle">
+             <h3>▼ Previous Entries</h3>
+            </div>
+
+            <div id="entriesContainer" class="collapsed"> </div>
+        </div>
+
+    </section>
+
+    <section class="about" id="about">
+
+        <h2>About CIELA</h2>
+
+        <p>
+            CIELA began as a simple weather app. Then, curiosity got involved.
+          <br>You can search real cities for live forecasts, save weather memories in your journal, and if you're the kind of person who clicks on things just to see what happens...you might discover a few places that aren't exactly on any map. And keep an eye out for little surprises. Some are easy to find. Others are hiding in plain sight.
+          <br>So go ahead.<br>Search a city.<br>Search a dream.<br>Search something you probably shouldn't.
+          <br><br>P.S. whoever keeps searching fictional places... we like the way you think.
+        </p>
+    </section>
+
+</div>
+
+<div id="skyMessage" class="sky-message hidden">
+    <button id="closeSkyMessage">&times;</button>
+
+    <h3>☁ Message from the Sky</h3>
+
+    <p id="skyMessageText">
+        The sky has something to tell you.
+    </p>
+
+    <button id="nextSkyMessage">
+        ✨ Next
+    </button>
+
+</div>
+    
+<footer>
+
+    <p> Forecast ends here. The sky doesn't.
+        <br>© 2026 CIELA • Read the Sky
+        <br>Crafted by Riya Gupta
+    </p>
+
+</footer>
+
+<div id="portalOverlay">
+    <div class="portal-box">
+        <h2 id="portalTitle">Searching...</h2>
+        <p id="portalSubtitle"></p>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>
