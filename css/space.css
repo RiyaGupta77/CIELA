@@ -7,7 +7,7 @@ box-sizing:border-box;
 body{
 height:100vh;
 font-family:"Anybody",sans-serif;
-background:url("../assets/spacebg.jpg") center/cover;
+background:url("../assets/spacebg.JPG") center/cover;
 display:flex;
 justify-content:center;
 align-items:center;
