@@ -11,7 +11,7 @@ const skySummary = document.getElementById("skySummary");
 
 const humidityLabel = document.getElementById("humidityLabel");
 const feelsLikeLabel = document.getElementById("feelsLikeLabel");
-const visibilityLabel = document.getElementById("visibilityLabel");
+const airQualityLabel = document.getElementById("airQualityLabel");
 const windLabel = document.getElementById("windLabel");
 const hourlyCards = document.getElementById("hourlyCards");
 const heroCard = document.getElementById("heroCard");
@@ -33,10 +33,118 @@ const closeSkyMessage = document.getElementById("closeSkyMessage");
 const portalOverlay=document.getElementById("portalOverlay");
 const portalTitle=document.getElementById("portalTitle");
 const portalSubtitle=document.getElementById("portalSubtitle");
+const unknownOverlay = document.getElementById("unknownOverlay");
+const unknownText = document.getElementById("unknownText");
 
+const modal = document.getElementById("secretModal");
+const modalTitle = document.getElementById("modalTitle");
+const modalMessage = document.getElementById("modalMessage");
+
+const randomCities = ["Tokyo","Longyearbyen","Paris","New York","Saint-Louis-du-Ha! Ha!","Cairo","Sydney","Reykjavik","Cape Town","Singapore","London","Dubai","Seoul","Kathmandu","Toronto","Mumbai",
+"Rio de Janeiro","Rome","Oslo","Bangkok","Barcelona","France","Ashgabat","Oymyakon","Busan","Saint-Louis-du-Ha! Ha!","1770"];
+
+
+const surprises = ["Tokyo","area 51","Seoul","hogwarts","London","Paris","space","Mumbai","Saint-Louis-du-Ha! Ha!","hell","heaven"];
+
+const hiddenReplies = {
+    bro: ["sup bro!"],
+    hello: ["Hello, Earthling."],
+    404: ["Error not found."],
+    bitcoin: ["We're legally not qualified to answer that."],
+    nothing: ["You found it."],
+    everything: ["That's a very broad search."],
+    avengers: ["They're busy."],
+    batman: ["Probably standing on a rooftop somewhere"],
+    creator: ["Crafted by Riya. Please clap."],
+    password: ["Absolutely not."],
+    admin: ["Access Denied. Nice try."],
+    me: ["You're here. That's a good start."],
+    secret: ["If I told you, it wouldn't be one anymore."],
+    bruh: ["Understandable reaction."],
+    sad: ["Forecast: Temporary"],
+    ciela: ["Hi. I've been waiting for someone to search my name."],
+    love: ["Forecast: Complicated"],
+    money: ["Have you tried employment?"],
+    home: ["I hope you find it, wherever it is."],
+    what: ["Good question."],
+    html: ["The skeleton is doing its best."],
+    alone: ["The sky is still here."],
+    sun: ["Currently carrying the entire solar system."],
+    rickroll: ["Never gonna give you up, never gonna let you down."],
+    bts: ["Best boyband in the world."],
+    delete: ["Nice try"],
+    past: ["Read only."],
+    42: ["🌌Correct. Unfortunately, no one remembers the question."],
+    water: ["Go drink some"],
+    chatgpt: ["We don't know each other."],
+};
+
+function showSearchMessage(messages){
+    const random =
+    messages[Math.floor(Math.random()*messages.length)];
+    document.getElementById("skyMessageText").textContent = random;
+
+    document
+    .getElementById("skyMessage")
+    .classList.remove("hidden");
+}
 
 searchBtn.addEventListener("click", () => {
     const city = cityInput.value.trim().toLowerCase();
+    const query = city.trim().toLowerCase();
+
+    //hidden replies
+    if(hiddenReplies[query]){
+     showSearchMessage(hiddenReplies[query]);
+     cityInput.value = "";
+     return;
+    }
+
+    //random city
+    if(city.toLowerCase() === "random"){
+    const randomCity =
+    randomCities[Math.floor(Math.random() * randomCities.length)];
+    
+    getCurrentWeather(randomCity);
+    getForecast(randomCity);
+    cityInput.value = randomCity;
+    return;
+}
+
+if(
+    city.toLowerCase() === "surprise me" ||
+    city.toLowerCase() === "surprise"
+    ){ const pick = surprises[Math.floor(Math.random() * surprises.length)];
+    cityInput.value = pick;
+
+    // universes
+    if(pick.toLowerCase() === "hogwarts"){
+        openHogwartsPortal("Hogwarts", "🦉 Opening Magical Forecast...", ".pages/hogwarts.html");
+        return;
+    }
+
+    if(pick.toLowerCase() === "heaven"){
+        openHeavenPortal("Heaven", "☁ Ascending...", ".pages/heaven.html");
+        return;
+    }
+    if(pick.toLowerCase() === "hell"){
+        openHellPortal("Hell", "🔥 Descending...", ".pages/hell.html");
+        return;
+    }
+    if(pick.toLowerCase() === "space"){
+        openSpacePortal("Space", "Leaving Earth...", ".pages/space.html");
+        return;
+    }
+    if(pick.toLowerCase() === "area 51"){
+        openArea51Portal("Area 51", "👽 Accessing Classified Files...", ".pages/area51.html");
+        return;
+    }
+    // otherwise it's a real city
+    getCurrentWeather(pick);
+    getForecast(pick);
+    return;
+}
+
     const hiddenUniverses = {
     hogwarts: openHogwartsPortal,
     heaven: openHeavenPortal,
@@ -101,6 +209,30 @@ function getWeatherIcon(main, iconCode){
     }
 }
 
+async function showUnknownPlanet(){
+    unknownOverlay.classList.add("show");
+    unknownText.textContent = "Searching Earth...";
+    await wait(700);
+
+    unknownText.textContent =
+    "Searching nearby galaxies...\n\n❌";
+    await wait(700);
+
+    unknownText.textContent =
+    "Searching alternate timelines...\n\n❌";
+    await wait(700);
+
+    unknownText.textContent =
+    "No known civilization has registered this location.";
+    await wait(1800);
+
+    unknownOverlay.classList.remove("show");
+}
+
+function wait(ms){
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 async function getCurrentWeather(query) {
 
     gsap.to("#heroCard",{
@@ -128,8 +260,10 @@ setTimeout(() => {
 
          const response = await fetch(url);
 
- if(!response.ok){
- throw new Error("City not found");}
+   if(!response.ok){
+      await showUnknownPlanet();
+      throw new Error("Try another location...");
+    }
 
     const data = await response.json();
 
@@ -142,13 +276,13 @@ setTimeout(() => {
 
     console.log("Wind:", data.wind.speed);
 
-    console.log("Visibility:", data.visibility);
+    console.log("Air Quality:", data.getAirQuality);
 
     console.log("Feels Like:", data.main.feels_like);
 
     console.log(document.getElementById("humidityLabel"));
     console.log(document.getElementById("windLabel"));
-    console.log(document.getElementById("visibilityLabel"));
+    console.log(document.getElementById("airQualityLabel"));
     console.log(document.getElementById("feelsLikeLabel"));
 
 
@@ -169,15 +303,8 @@ setTimeout(() => {
 
     humidityLabel.textContent = data.main.humidity + "%";
 
-    windLabel.textContent = data.wind.speed + " m/s";
-
-    visibilityLabel.textContent 
-   if (data.visibility >= 10000) {
-    visibilityLabel.textContent = "10+ km";
-} else {
-    visibilityLabel.textContent =
-        (data.visibility / 1000).toFixed(1) + " km";
-}
+    windLabel.textContent = (data.wind.speed * 3.6).toFixed(1) + " km/h";
+    getAirQuality(data.coord.lat, data.coord.lon);
 
     feelsLikeLabel.textContent =
     Math.round(data.main.feels_like) + "°C";
@@ -217,9 +344,7 @@ setTimeout(() => {
 
 }
     catch(error){
-
-        alert(error.message);
-
+        console.log(error)
     }
 
    finally{
@@ -230,12 +355,10 @@ setTimeout(() => {
     scale:1,
     duration:0.35,
     ease:"back.out(1.8)"
-
 });
 }
 
 const weatherMessages = {
-
     Clear: [
         "The sky's staying clear today. A good day to spend outside if you can.",
         "Sunlight's doing all the work today.",
@@ -254,6 +377,7 @@ const weatherMessages = {
         "Rain's settling in for a while.",
         "Roads might get slippery later.",
         "Don't forget an umbrella.",
+        "Rain expected to interrupt someone's laundry.",
         "The streets might sound different today.",
         "Some people wait for sunny days. Others wait for days like this."
     ],
@@ -299,7 +423,6 @@ function updateSkySummary(weather){
 }
 
 async function getForecast(query) {
-
     let url;
 
         if (typeof query === "string") {
@@ -407,6 +530,48 @@ function getUserLocation() {
     );
 }
 
+async function getAirQuality(lat, lon){
+    try{
+
+        const response = await fetch(
+`https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${API_KEY}`
+        );
+
+        const data = await response.json();
+        const aqi = data.list[0].main.aqi;
+        let text = "";
+
+        switch(aqi){
+            case 1:
+                text = "🟢 Good";
+                break;
+
+            case 2:
+                text = "🟡 Fair";
+                break;
+
+            case 3:
+                text = "🟠 Moderate";
+                break;
+
+            case 4:
+                text = "🔴 Poor";
+                break;
+
+            case 5:
+                text = "🟣 Very Poor";
+                break;
+
+            default:
+                text = "Unavailable";
+        }
+        airQualityLabel.textContent = text;
+    }
+
+    catch(error){
+        airQualityLabel.textContent = "Unavailable";
+    }
+}
 
 
 let journalEntries = JSON.parse(localStorage.getItem("journalEntries")) || [];
@@ -498,8 +663,10 @@ const skyMessages = [
 "Searching imaginary places is strangely popular around here.",
 "Search Heaven. The customer support is surprisingly polite.",
 "The moon has phases. You're allowed to as well.",
+"Try searching 'home'",
 "The Moon affects Earth's tides every single day.",
 "☁ Sky Dare: Take one picture of today's sky. No filters.",
+"Try searching 'surprise me'.",
 "Drink some water.",
 "Watch a sunrise someday. They're worth losing sleep for.",
 "Send someone a random 'hope you're doing okay' message.",
@@ -509,10 +676,12 @@ const skyMessages = [
 "The sky thinks you're cool.",
 "You've been looking at a screen for a while. Look at something far away for ten seconds.",
 "The sky has seen millions of difficult days. They always passed.",
+"Try searching 'home'",
 "Lightning heats the air hotter than the surface of the Sun.",
 "☁ Sky Dare: Wave at the sky. Nobody will know.",
 "The smell after rain is called petrichor.",
 "Remember to blink.",
+"Try searching 'surprise me'.",
 "The sky asked me to say hi.",
 "Your tabs are judging you.",
 "🌙 Quest: Find the oldest tree you can today.",
@@ -523,8 +692,10 @@ const skyMessages = [
 "Whatever you're procrastinating... good luck.",
 "☁ Sky Dare: Watch today's sunset if you can.",
 "You deserve a snack.",
+"Try searching 'home'",
 "Share today's sky with someone.",
 "If you've read ten of these... respect.",
+"Try searching 'random'.",
 "This popup exists because the developer had too many ideas.",
 "🌳 Quest: Thank a tree for making oxygen.",
 "Developer note: Thanks for visiting CIELA. ☁",
@@ -534,6 +705,7 @@ const skyMessages = [
 "The weather can wait five seconds. Your posture can't.",
 "Curious? Try searching Hogwarts ⚡",
 "🌙 Quest: Tell the Moon 'good evening.'",
+"Try searching 'random'.",
 "It's okay if today wasn't productive.",
 "Thanks for stopping by. The clouds appreciate visitors.",
 "Area 51 has something to hide.",

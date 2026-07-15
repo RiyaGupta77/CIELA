@@ -783,6 +783,38 @@ footer{
     min-height:40px;
 }                              
 
+#unknownOverlay{
+    position:fixed;
+    inset:0;
+    background:rgba(5,8,18,.96);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    opacity:0;
+    visibility:hidden;
+    transition:.4s;
+    z-index:999999;
+}
+
+#unknownOverlay.show{
+    opacity:1;
+    visibility:visible;
+}
+
+.unknown-box{
+    text-align:center;
+    color:white;
+    max-width:700px;
+    padding:40px;
+}
+
+#unknownText{
+    font-size:2rem;
+    line-height:1.8;
+    white-space:pre-line;
+    font-family:"Bricolage Grotesque", sans-serif;
+}
+
 /* tablet */
 @media (max-width:1024px){
 .container{
