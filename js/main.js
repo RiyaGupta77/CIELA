@@ -41,7 +41,7 @@ const modalTitle = document.getElementById("modalTitle");
 const modalMessage = document.getElementById("modalMessage");
 
 const randomCities = ["Tokyo","Longyearbyen","Paris","New York","Saint-Louis-du-Ha! Ha!","Cairo","Sydney","Reykjavik","Cape Town","Singapore","London","Dubai","Seoul","Kathmandu","Toronto","Mumbai",
-"Rio de Janeiro","Rome","Oslo","Bangkok","Barcelona","France","Ashgabat","Oymyakon","Busan","Saint-Louis-du-Ha! Ha!","1770"];
+"Rio de Janeiro","Rome","Oslo","Bangkok","Barcelona","France","Ashgabat","Oymyakon","Busan","1770"];
 
 
 const surprises = ["Tokyo","area 51","Seoul","hogwarts","London","Paris","space","Mumbai","Saint-Louis-du-Ha! Ha!","hell","heaven"];
@@ -200,7 +200,6 @@ cityInput.addEventListener("keydown", (event) => {
 });
 
 function getWeatherIcon(main, iconCode){
-
     const isNight = iconCode.endsWith("n");
 
     switch(main){
@@ -296,6 +295,10 @@ setTimeout(() => {
 
     const data = await response.json();
 
+    clearInterval(loadingInterval);
+    condition.textContent = data.weather[0].main;
+
+
     weatherIcon.src = getWeatherIcon(
      data.weather[0].main,
      data.weather[0].icon
@@ -379,9 +382,6 @@ setTimeout(() => {
    finally{
    searchBtn.disabled = false;
    searchBtn.textContent = "Search";}
-
-   clearInterval(loadingInterval);
-     condition.textContent = data.weather[0].main;
 
    gsap.to("#heroCard",{
     scale:1,
@@ -531,7 +531,7 @@ function changeHeroTheme(weather){
             break;
 
         default:
-            heroCard.classList.add("hero-mist");
+        heroCard.classList.add("hero-mist");
     }
 }
 
@@ -566,7 +566,7 @@ async function getAirQuality(lat, lon){
     try{
 
         const response = await fetch(
-`https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${API_KEY}`
+         `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${API_KEY}`
         );
 
         const data = await response.json();
@@ -599,25 +599,18 @@ async function getAirQuality(lat, lon){
         }
         airQualityLabel.textContent = text;
     }
-
     catch(error){
         airQualityLabel.textContent = "Unavailable";
     }
 }
 
-
 let journalEntries = JSON.parse(localStorage.getItem("journalEntries")) || [];
-
 renderEntries();
-
 saveEntryBtn.addEventListener("click", saveEntry);
 
 function saveEntry(){
-
     if(journalInput.value.trim()===""){
-
         return;
-
     }
 
     const entry={
@@ -639,7 +632,6 @@ function saveEntry(){
 }
 
 function renderEntries(){
-
     entriesContainer.innerHTML="";
     journalEntries.forEach((entry,index)=>{
         entriesContainer.innerHTML+=`
@@ -662,7 +654,6 @@ function renderEntries(){
 }
 
 function deleteEntry(index){
-
     journalEntries.splice(index,1);
     localStorage.setItem(
         "journalEntries",
@@ -672,7 +663,6 @@ function deleteEntry(index){
 }
 
 historyToggle.addEventListener("click", () => {
-
     entriesContainer.classList.toggle("expanded");
     entriesContainer.classList.toggle("collapsed");
 
@@ -690,7 +680,6 @@ historyToggle.addEventListener("click", () => {
 getUserLocation();
 
 //will add more later.
-
 const skyMessages = [
 "Searching imaginary places is strangely popular around here.",
 "Search Heaven. The customer support is surprisingly polite.",
@@ -743,7 +732,6 @@ const skyMessages = [
 "Area 51 has something to hide.",
 ];
 
-//will add more later.
 
 function showRandomSkyMessage(){
     const randomIndex =
@@ -751,12 +739,10 @@ function showRandomSkyMessage(){
 
     skyMessageText.textContent =
         skyMessages[randomIndex];
-
 }
 
 nextSkyMessage.addEventListener("click", () => {
     skyMessageText.style.opacity = 0;
-
     setTimeout(() => {
 
         showRandomSkyMessage();

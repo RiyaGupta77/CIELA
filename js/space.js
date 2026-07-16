@@ -59,18 +59,18 @@ const transmissions=[
 function newMessage(){
 let random;
 if(Math.random()<0.02){
-random =
-"⚠ UNKNOWN SIGNAL DETECTED\n\nDon't look behind you.";
+ random =
+ "⚠ UNKNOWN SIGNAL DETECTED\n\nDon't look behind you.";
 }else{
-random =
-transmissions[Math.floor(Math.random()*transmissions.length)];
+ random =
+ transmissions[Math.floor(Math.random()*transmissions.length)];
 }
 
 radio.style.opacity=0;
 
 setTimeout(()=>{
-radio.textContent=random;
-radio.style.opacity=1;
+ radio.textContent=random;
+ radio.style.opacity=1;
 },300);
 }
 

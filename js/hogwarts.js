@@ -74,22 +74,22 @@ const nextLetter=document.getElementById("nextLetter");
 const closeOwlPost=document.getElementById("closeOwlPost");
 
 function randomLetter(){
-const random=Math.floor(Math.random()*owlLetters.length);
-owlText.textContent=owlLetters[random];
+ const random=Math.floor(Math.random()*owlLetters.length);
+ owlText.textContent=owlLetters[random];
 }
 
 setTimeout(()=>{
-randomLetter();
-owlPost.classList.remove("hidden");
-owlPost.classList.add("visible");
+ randomLetter();
+ owlPost.classList.remove("hidden");
+ owlPost.classList.add("visible");
 },2500);
 
 nextLetter.addEventListener("click",()=>{
 owlText.style.opacity=0;
 
 setTimeout(()=>{
-randomLetter();
-owlText.style.opacity=1;
+ randomLetter();
+ owlText.style.opacity=1;
 },200);
 });
 
@@ -204,7 +204,6 @@ const castleSchedule = [
 ];
 
 function updateCastleSchedule(){
-
     const hour = new Date().getHours();
     let current;
     for(const period of castleSchedule){
@@ -222,7 +221,6 @@ function updateCastleSchedule(){
     }
 
     castleEmoji.textContent = current.emoji;
-
     const randomMessage =
     current.messages[
         Math.floor(Math.random()*current.messages.length)
@@ -232,5 +230,4 @@ function updateCastleSchedule(){
 }
 
 updateCastleSchedule();
-
 setInterval(updateCastleSchedule,60000);
