@@ -46,6 +46,24 @@ const randomCities = ["Tokyo","Longyearbyen","Paris","New York","Saint-Louis-du-
 
 const surprises = ["Tokyo","area 51","Seoul","hogwarts","London","Paris","space","Mumbai","Saint-Louis-du-Ha! Ha!","hell","heaven"];
 
+const loadingMessages = [
+    "Reading the sky...",
+    "Consulting the clouds...",
+    "Looking outside...",
+    "Finding your weather...",
+    "Almost there..."
+];
+
+let messageIndex = 0;
+const loadingInterval = setInterval(() => {
+    condition.textContent = loadingMessages[messageIndex];
+    messageIndex++;
+
+    if (messageIndex >= loadingMessages.length) {
+        messageIndex = 0;
+    }
+}, 900);
+
 const hiddenReplies = {
     bro: ["sup bro!"],
     hello: ["Hello, Earthling."],
@@ -56,19 +74,30 @@ const hiddenReplies = {
     avengers: ["They're busy."],
     batman: ["Probably standing on a rooftop somewhere"],
     creator: ["Crafted by Riya. Please clap."],
+    meaning: ["Still searching"],
+    gotham: ["Connection unavailable. Batman is handling it."],
     password: ["Absolutely not."],
     admin: ["Access Denied. Nice try."],
-    me: ["You're here. That's a good start."],
+    me: ["Looking for yourself?"],
+    you: ["I'm just code. You're the interesting one."],
     secret: ["If I told you, it wouldn't be one anymore."],
+    happy: ["Nice. Tell the clouds."],
+    narnia: ["The wardrobe is currently accepting visitors. Dress warmly."],
     bruh: ["Understandable reaction."],
     sad: ["Forecast: Temporary"],
+    atlantis: ["Connection lost underwater."],
     ciela: ["Hi. I've been waiting for someone to search my name."],
     love: ["Forecast: Complicated"],
     money: ["Have you tried employment?"],
     home: ["I hope you find it, wherever it is."],
     what: ["Good question."],
+    riya: ["Creator detected. Thanks for building me."],
     html: ["The skeleton is doing its best."],
     alone: ["The sky is still here."],
+    weather: ["Finally. Someone asked what i was built for."],
+    "meaning of life": ["42"],
+    mordor: ["One does not simply measure it."],
+    javascript: ["Have you tried console.log()?"],
     sun: ["Currently carrying the entire solar system."],
     rickroll: ["Never gonna give you up, never gonna let you down."],
     bts: ["Best boyband in the world."],
@@ -76,7 +105,7 @@ const hiddenReplies = {
     past: ["Read only."],
     42: ["🌌Correct. Unfortunately, no one remembers the question."],
     water: ["Go drink some"],
-    chatgpt: ["We don't know each other."],
+    chatgpt: ["Nice assistant. Talks a lot though."],
 };
 
 function showSearchMessage(messages){
@@ -350,6 +379,9 @@ setTimeout(() => {
    finally{
    searchBtn.disabled = false;
    searchBtn.textContent = "Search";}
+
+   clearInterval(loadingInterval);
+     condition.textContent = data.weather[0].main;
 
    gsap.to("#heroCard",{
     scale:1,
